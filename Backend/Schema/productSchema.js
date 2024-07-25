@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const imageSchema = require("./imageSchema");
+const reviewSchema = require("./reviewSchema");
 
 const productSchema =new mongoose.Schema({
     name:{
@@ -19,16 +21,7 @@ const productSchema =new mongoose.Schema({
         type:Number,
         default:0
     },
-    images:[{
-        pubilc_id:{
-            type:String,
-            required:true
-        },
-        URL:{
-            type:String,
-            required:true
-        }
-    }],
+    images:[imageSchema],
     category:{
         type:String,
         required:[true,"Please enter category"]
@@ -44,20 +37,7 @@ const productSchema =new mongoose.Schema({
         default:0
     },
     reviews:
-        [{
-            name:{
-                type:String,
-                required:true,
-            },
-            rating:{
-                type:Number,
-                required:true
-            },
-            Comment:{
-                type:String,
-                required:true
-            }
-        }]
+        [reviewSchema]
     ,
     createdAt:{
             type: Date,
